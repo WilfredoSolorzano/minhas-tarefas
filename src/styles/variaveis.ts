@@ -1,11 +1,20 @@
 export default {
   vermelho: '#c23616',
   verde: '#44bd32',
+  verdeHouver: '#45a049',
   amarelo: '#f0c11a',
   amarelo2: '#e1a32a',
   azulEscuro: '#2f3640',
+  cor001: '#666',
   cor004: '#f9f9f9',
   cor002: '#f2f2f2',
-  cor003: '#f7f7f7',
-  cor0: '#fff'
+  cor003: '#79a7e8',
+  corHouver: '#eaeaea',
+  corFundo1: '#f0f0f0',
+  corFundo2: '#fff',
+  corFundo3: '#fcfcfc',
+  corFundoForm: '#666666',
+  corBorde: '#ddd',
+  corBorde2: '#ccc',
+  corFundoitemContato: '#e6e6e6'
 }

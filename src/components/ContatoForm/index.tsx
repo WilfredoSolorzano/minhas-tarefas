@@ -1,66 +1,70 @@
+import { FormEvent, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useState } from 'react'
-import { agregarContacto, editarContacto } from '../../store/reducers/contato'
-import { BotaoSalvar } from '../../containers/Formulario/style'
+import { agregarContato, editarContato } from '../../store/reducers/contato'
+import { BotaoSalvar } from '../../styles'
+import { TipoContato } from '../../utils/enums/Contatos'
+import { useNavigate } from 'react-router-dom'
 
 type Props = {
   id?: number
-  nombreInicial?: string
+  nomeInicial?: string
   emailInicial?: string
   telefonoInicial?: string
+  grupoInicial?: TipoContato
   onSubmit?: () => void
 }
 
-const ContactoForm = ({
+const ContatoForm = ({
   id,
-  nombreInicial = '',
+  nomeInicial = '',
   emailInicial = '',
   telefonoInicial = '',
+  grupoInicial = TipoContato.FAMILIAR,
   onSubmit
 }: Props) => {
-  const [nombre, setNombre] = useState(nombreInicial)
+  const [nome, setNombre] = useState(nomeInicial)
   const [email, setEmail] = useState(emailInicial)
   const [telefono, setTelefono] = useState(telefonoInicial)
+  const [grupo, setGrupo] = useState<TipoContato>(grupoInicial)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  const manejarSubmit = () => {
+  const manejarSubmit = (evento: FormEvent) => {
+    evento.preventDefault()
+
     if (id) {
       dispatch(
-        editarContacto({
+        editarContato({
           id,
-          nombre,
+          nome,
           email,
           telefono,
-          nome: '',
-          grupo: ''
+          grupo
         })
       )
     } else {
       dispatch(
-        agregarContacto({
+        agregarContato({
           id: Date.now(),
-          nombre,
+          nome,
           email,
           telefono,
-          nome: '',
-          grupo: ''
+          grupo
         })
       )
     }
+
     if (onSubmit) onSubmit()
+
+    navigate('/')
   }
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault()
-        manejarSubmit()
-      }}
-    >
+    <form onSubmit={manejarSubmit}>
       <input
         type="text"
-        placeholder="Nombre completo"
-        value={nombre}
+        placeholder="nome completo"
+        value={nome}
         onChange={(e) => setNombre(e.target.value)}
       />
       <input
@@ -71,13 +75,27 @@ const ContactoForm = ({
       />
       <input
         type="tel"
-        placeholder="Teléfono"
+        placeholder="Telefone"
         value={telefono}
         onChange={(e) => setTelefono(e.target.value)}
       />
+      <div>
+        <p>Grupo</p>
+        {Object.values(TipoContato).map((grupoOption) => (
+          <label key={grupoOption}>
+            <input
+              type="radio"
+              value={grupoOption}
+              checked={grupo === grupoOption}
+              onChange={() => setGrupo(grupoOption)}
+            />
+            {grupoOption}
+          </label>
+        ))}
+      </div>
       <BotaoSalvar type="submit">Guardar</BotaoSalvar>
     </form>
   )
 }
 
-export default ContactoForm
+export default ContatoForm

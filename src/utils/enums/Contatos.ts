@@ -1,11 +1,11 @@
-export enum TipoContacto {
+export enum TipoContato {
   FAMILIAR = 'Familiar',
   AMIGO = 'Amigo',
   TRABAJO = 'Trabajo',
   OTRO = 'Otro'
 }
 
-export enum EstadoContacto {
+export enum EstadoContato {
   ACTIVO = 'Activo',
   INACTIVO = 'Inactivo'
 }

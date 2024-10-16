@@ -2,10 +2,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface Contacto {
   id: number
-  nombre: string
+  nome: string
   email: string
   telefono: string
-  nome: string
   grupo: string
 }
 
@@ -19,17 +18,15 @@ const initialState: ContactoState = {
   contactoSeleccionado: null
 }
 
-const contactoSlice = createSlice({
+const contatoSlice = createSlice({
   name: 'contatos',
   initialState,
   reducers: {
-    // Acción para agregar un nuevo contacto
-    agregarContacto: (state, action: PayloadAction<Contacto>) => {
+    agregarContato: (state, action: PayloadAction<Contacto>) => {
       state.items.push(action.payload)
     },
 
-    // Acción para editar un contacto existente
-    editarContacto: (state, action: PayloadAction<Contacto>) => {
+    editarContato: (state, action: PayloadAction<Contacto>) => {
       const index = state.items.findIndex(
         (contacto) => contacto.id === action.payload.id
       )
@@ -38,22 +35,21 @@ const contactoSlice = createSlice({
       }
     },
 
-    // Otras acciones como removerContacto
-    removerContacto: (state, action: PayloadAction<number>) => {
+    removerContato: (state, action: PayloadAction<number>) => {
       state.items = state.items.filter(
         (contacto) => contacto.id !== action.payload
       )
     },
-    seleccionarContacto: (state, action: PayloadAction<number>) => {
+    seleccionarContato: (state, action: PayloadAction<number>) => {
       state.contactoSeleccionado =
         state.items.find((c) => c.id === action.payload) || null
     },
-    deseleccionarContacto: (state) => {
+    deseleccionarContato: (state) => {
       state.contactoSeleccionado = null
     },
     cadastrar: (state, action: PayloadAction<Omit<Contacto, 'id'>>) => {
       const novoContato = {
-        id: state.items.length + 1, // Generación de un ID sencillo, puedes cambiarlo
+        id: state.items.length + 1,
         ...action.payload
       }
       state.items.push(novoContato)
@@ -61,14 +57,13 @@ const contactoSlice = createSlice({
   }
 })
 
-// Exporta las acciones para poder usarlas en tus componentes
 export const {
-  agregarContacto,
-  editarContacto,
-  removerContacto,
-  seleccionarContacto,
-  deseleccionarContacto,
+  agregarContato,
+  editarContato,
+  removerContato,
+  seleccionarContato,
+  deseleccionarContato,
   cadastrar
-} = contactoSlice.actions
+} = contatoSlice.actions
 
-export default contactoSlice.reducer
+export default contatoSlice.reducer

@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
-import contactosReducer from './contato' // Asegúrate de que la ruta sea correcta
-import filtroReducer from './filtro' // Asegúrate de que la ruta sea correcta
+import contatosReducer from './contato'
+import filtroReducer from './filtro'
 
-// Combina tus reductores
+// Combina tus reductores en un reductor raíz
 const rootReducer = combineReducers({
-  contactos: contactosReducer,
+  contatos: contatosReducer,
   filtro: filtroReducer
 })
 

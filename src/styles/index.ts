@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components'
-import variaveis from './variaveis'
+import variaveis from '../styles/variaveis'
+
 const Styleglobal = createGlobalStyle`
 * {
   margin: 0;
@@ -11,47 +12,85 @@ const Styleglobal = createGlobalStyle`
 `
 
 export const Container = styled.div`
-  border-radius: 0.25rem;
-  padding: 2rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
-  align-items: start;
-
-  & > div {
-    overflow-y: auto;
-  }
+  padding: 40px;
+  display: flex;
+  height: 100vh;
+  width: 950px;
 
   @media (max-width: 1000px) {
-    grid-template-columns: 1fr;
-    padding: 1rem;
-    margin-block: 1rem;
-    width: 95%;
-    border: 1px solid ${variaveis.cor002};
-    border-radius: 0.25rem;
-    box-shadow: 4px 2px rgba(0, 0, 0, 0.1);
-    background-color: ${variaveis.cor004};
-    gap: 1rem;
+    flex-direction: column;
+    padding: 20px;
+    width: 80%;
+    height: 0%;
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px;
+    width: 80%;
+    height: 0%;
+  }
+`
+
+export const BarraLateralContainer = styled.div`
+  width: 250px;
+  background-color: ${variaveis.corFundo1};
+  padding: 20px;
+  height: 100%;
+  border-right: 1px solid ${variaveis.corBorde};
+
+  @media (max-width: 1000px) {
+    width: 70%;
+    border-right: none;
+    border-bottom: 1px solid ${variaveis.corBorde};
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px;
+    height: 100%;
+  }
+`
+
+export const ListaDeContatosContainer = styled.div`
+  flex: 1;
+  padding: 20px;
+  background-color: ${variaveis.corFundo2};
+  overflow-y: auto;
+  border-left: 1px solid ${variaveis.corBorde};
+
+  @media (max-width: 1000px) {
+    border-left: none;
+    border-top: 1px solid ${variaveis.corBorde};
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px;
   }
 `
 
 export const Card = styled.div`
-  background-color: #fcfcfc;
+  background-color: ${variaveis.corFundo3};
   padding: 16px;
   margin-bottom: 16px;
   border-radius: 8px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   max-width: 100%;
   box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding: 2px;
+    margin-bottom: 2px;
+  }
 `
 
 export const BarraAcoes = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 8px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 6px;
+  }
 `
 
 export const Circulo = styled.button`
@@ -60,12 +99,21 @@ export const Circulo = styled.button`
   right: 40px;
   height: 64px;
   width: 64px;
-  background-color: green;
+  background-color: ${variaveis.verde};
   color: white;
   border-radius: 50%;
   font-size: 24px;
   border: none;
   cursor: pointer;
+
+  @media (max-width: 768px) {
+    height: 48px;
+    width: 48px;
+    top: 91px;
+    bottom: 20px;
+    right: 20px;
+    font-size: 20px;
+  }
 `
 
 export const Form = styled.form`
@@ -73,7 +121,7 @@ export const Form = styled.form`
   width: 100%;
   font-weight: bold;
   font-size: 14px;
-  color: #666666;
+  color: ${variaveis.corFundoForm};
 
   textarea {
     resize: none;
@@ -90,6 +138,19 @@ export const Opcoes = styled.div`
 
   label {
     margin-right: 6px;
+  }
+`
+export const BotaoSalvar = styled.button`
+  padding: 10px 20px;
+  background-color: ${variaveis.verde};
+  margin-top: 15px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${variaveis.verdeHouver};
   }
 `
 
@@ -111,7 +172,7 @@ export const DetalleContacto = styled.div`
 `
 export const Aside = styled.aside`
   padding: 16px;
-  background-color: #f0f0f0;
+  background-color: ${variaveis.corFundo1};
   height: 100vh;
   overflow-y: auto;
 `
@@ -123,13 +184,13 @@ export const ListaContactos = styled.ul`
 
 export const ContactoItem = styled.li`
   padding: 12px;
-  border: 1px solid #ddd;
+  border: 1px solid ${variaveis.corBorde};
   margin-bottom: 8px;
   cursor: pointer;
   transition: background-color 0.2s;
 
   &:hover {
-    background-color: #eaeaea;
+    background-color: ${variaveis.corHouver};
   }
 
   p {
@@ -138,7 +199,7 @@ export const ContactoItem = styled.li`
   }
 
   small {
-    color: #666;
+    color: ${variaveis.cor001};
   }
 `
 export default Styleglobal

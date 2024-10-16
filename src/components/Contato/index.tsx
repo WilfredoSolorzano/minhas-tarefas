@@ -1,20 +1,20 @@
 import React from 'react'
+import { ContatoContainer, NomeCont } from './style'
 
 interface ContatoProps {
-  id: number
+  id?: number
   nome: string
   email: string
   grupo: string
 }
 
-const Contato: React.FC<ContatoProps> = ({ id, nome, email, grupo }) => {
+const Contato: React.FC<ContatoProps> = ({ nome, email, grupo }) => {
   return (
-    <div>
-      <h2>{nome}</h2>
+    <ContatoContainer>
+      <NomeCont>{nome}</NomeCont>
       <p>Email: {email}</p>
       <p>Grupo: {grupo}</p>
-      <p>ID: {id}</p>
-    </div>
+    </ContatoContainer>
   )
 }
 
